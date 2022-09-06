@@ -1,34 +1,25 @@
-let nombre = prompt("Ingrese un nombre:");
+const convertirDolar = (numero1, numero2) => numero1 * numero2;
 
-let humor = prompt("Hola " + nombre +" como estas ?");
 
-switch(humor){
-    case "bien":
-        console.log("Me alegro por vos ");
-        break;
-    case "enojado":
-        console.log("pedite una pizza y unas empanadas, chill");
-        break;
-    case "triste":
-        console.log("pedite un helado y una buena peli");
-        break;
-    case "cansado": 
-        console.log("un baño y a la cama");
-        break;
-    case "genial":
-        console.log("bien ahiiiii")
-        break;
-    case "mal":
-        console.log("que paso,contame :(")
-        break
-    default:
-        console.log("no te entendi :(");
-        break;
+function dolares (numero1, numero2){
+    alert("Usted tiene " + (convertirDolar(numero1, numero2)) + " Pesos")
+    
 }
 
-let salir = prompt("quiere acceder al sitio ?")
 
-while(salir != "si"){
-    console.log(salir);
-    salir = prompt("quiere acceder al sitio ?");
-}
+
+    let respuesta;
+    do{
+        let numero1, numero2;
+        do{ 
+            numero1 = parseFloat(prompt("ingrese cantidad de dolares: "))
+            numero2 = parseFloat(prompt("ingrese valor del dolar actual: "))
+            if (isNaN (numero1) || isNaN(numero2)){
+                console.log("numero no valido")
+            }
+        }while((isNaN(numero1) || isNaN(numero2)))
+        dolares (numero1, numero2);
+        do{
+            respuesta = prompt("Quiere transformar mas pesos en dolares ?").toLowerCase()
+        }while (respuesta != "si" && respuesta != "no")
+    }while (respuesta != "no")
