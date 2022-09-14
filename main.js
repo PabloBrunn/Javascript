@@ -1,25 +1,89 @@
-const convertirDolar = (numero1, numero2) => numero1 * numero2;
 
-
-function dolares (numero1, numero2){
-    alert("Usted tiene " + (convertirDolar(numero1, numero2)) + " Pesos")
-    
+class producto {
+    constructor(nombre, genero, precio){
+        this.nombre = nombre;
+        this.genero = genero;
+        this.precio = precio;
+    }
 }
 
+const theForest = new producto ("the forest", "survival", 280);
+const conanExiles = new producto ("conan exiles", "lucha", 490);
+const lol = new producto ("league of legends", "moba", 10);
+const mortalKombat = new producto ("mortal kombat", "lucha", 700);
+const minecraft = new producto ("minecraft", "survival", 890)
+
+const stockJuegos = [theForest, conanExiles, lol, mortalKombat, minecraft];
+
+const carrito = [];
 
 
-    let respuesta;
-    do{
-        let numero1, numero2;
-        do{ 
-            numero1 = parseFloat(prompt("ingrese cantidad de dolares: "))
-            numero2 = parseFloat(prompt("ingrese valor del dolar actual: "))
-            if (isNaN (numero1) || isNaN(numero2)){
-                console.log("numero no valido")
-            }
-        }while((isNaN(numero1) || isNaN(numero2)))
-        dolares (numero1, numero2);
-        do{
-            respuesta = prompt("Quiere transformar mas pesos en dolares ?").toLowerCase()
-        }while (respuesta != "si" && respuesta != "no")
-    }while (respuesta != "no")
+let eleccionCliente = prompt("desea comprar algun juego?  si/no : ")
+
+
+while( eleccionCliente != "si" && eleccionCliente != "no"){
+    alert("Selecciona si o no")
+    eleccionCliente = prompt("desea comprar alguno juego?  si/no : ")
+}
+
+if( eleccionCliente == "si"){
+    alert("Juegos en stock : ")
+    let todosLosJuegos = stockJuegos.map(
+        (producto) => producto.nombre + " $" + producto.precio
+    );
+    alert(todosLosJuegos.join(" --- "))
+}
+
+while(eleccionCliente != "no"){
+    let nombre = prompt("elija el juego a comprar : ");
+    let precio = 0;
+    let genero = "sin genero";
+    if( nombre == "the forest" || nombre == "conan exiles" || nombre == "lol" || nombre == "mortal kombat" || 
+    nombre == "minecraft"){
+        switch(nombre){
+            case "the forest":
+                nombre = theForest.nombre
+                genero = theForest.genero
+                precio = theForest.precio;
+            break;
+            case "conan exiles":
+                nombre = conanExiles.nombre;
+                genero = conanExiles.genero;
+                precio = conanExiles.precio;
+            break;
+            case "lol":
+                nombre = lol.nombre;
+                genero = lol.genero;
+                precio = lol.precio;
+            break;
+            case "mortal kombat":
+                nombre = mortalKombat.nombre;
+                genero = mortalKombat.genero;
+                precio = mortalKombat.precio;
+            break;
+            case "minecraft":
+                nombre = minecraft.nombre;
+                genero = minecraft.genero;
+                precio = minecraft.precio;
+            break
+            default:
+            break;
+        }
+
+        carrito.push({nombre, genero, precio})
+    }else{
+        alert("no tenemos ese juego")
+    }
+    eleccionCliente = prompt("quiere comprar otro juego ? si/no");
+    
+    while(eleccionCliente == "no"){
+        alert("compra realizada")
+        carrito.forEach((carritoFinal) => {
+            alert(`producto: ${carritoFinal.nombre} genero: ${carritoFinal.genero} precio: ${carritoFinal.precio} `)
+        });
+        console.log(carrito)
+        break;
+    }
+
+}
+
