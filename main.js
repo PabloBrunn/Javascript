@@ -19,6 +19,23 @@ const minecraft = new producto("minecraft", "survival", 890)
 
 const stockJuegos = [theForest, conanExiles, lol, mortalKombat, minecraft];
 
+
+const contenedorJuegos = document.getElementById("contenedorJuegos");
+
+
+
+stockJuegos.forEach( producto => {
+    let div = document.createElement("div");
+    div.innerHTML = `<p> Juego : ${producto.nombre}</p>
+                    <p> Genero : ${producto.genero}</p>
+                    <p> Precio : $${producto.precio}</p>
+                    <button>Agregar</button>`;
+    contenedorJuegos.appendChild(div);
+})
+
+
+
+
 const carrito = [];
 
 
