@@ -1,113 +1,93 @@
-function sumarCarrito(valorA, valorB) {
-    let resultadoFinal = valorA + valorB;
-    return resultadoFinal;
-}
-
-class producto {
-    constructor(nombre, genero, precio) {
+class Producto {
+    constructor(id, nombre, precio, cantidad, genero) {
+        this.id = id;
         this.nombre = nombre;
-        this.genero = genero;
         this.precio = precio;
+        this.cantidad = cantidad;
+        this.genero = genero;
     }
 }
-
-const theForest = new producto("the forest", "survival", 280);
-const conanExiles = new producto("conan exiles", "lucha", 490);
-const lol = new producto("league of legends", "moba", 10);
-const mortalKombat = new producto("mortal kombat", "lucha", 700);
-const minecraft = new producto("minecraft", "survival", 890)
-
-const stockJuegos = [theForest, conanExiles, lol, mortalKombat, minecraft];
-
-
-const contenedorJuegos = document.getElementById("contenedorJuegos");
-
-
-
-stockJuegos.forEach( producto => {
-    let div = document.createElement("div");
-    div.innerHTML = `<p> Juego : ${producto.nombre}</p>
-                    <p> Genero : ${producto.genero}</p>
-                    <p> Precio : $${producto.precio}</p>
-                    <button>Agregar</button>`;
-    contenedorJuegos.appendChild(div);
-})
-
-
-
 
 const carrito = [];
 
+const juego1 = new Producto(1, "minecraft", 2300, 1, "survival");
+const juego2 = new Producto(2, "conan exiles", 680, 1, "survival");
+const juego3 = new Producto(3, "crash", 1300, 1, "plataforma");
+const juego4 = new Producto(4, "subnautica", 340, 1, "survival");
+const juego5 = new Producto(5, "raft", 240, 1, "survival");
 
-let eleccionCliente = prompt("desea comprar algun juego?  si/no : ")
+const todosLosJuegos = [juego1, juego2, juego3, juego4, juego5];
+
+const contenedorJuegos = document.getElementById("contenedorJuegos");
+
+todosLosJuegos.forEach(producto => {
+    const divProducto = document.createElement("div");
+    divProducto.innerHTML = `<div class="contenedorJuego">
+                                <img src="../img/${producto.id}.jpg" class="imagenJuego">
+                                <div class="descripcionProducto">
+                                    <h3 class="tituloJuego"> ${producto.nombre} </h3>
+                                    <p class="precioJuego"> ${producto.precio} </p>
+                                    <p class="generoJuego"> ${producto.genero} </p>
+                                    <button id="boton${producto.id}" class="botonCompra"> Comprar copia del juego </button>
+                                </div>
+                            </div>`;
+    contenedorJuegos.appendChild(divProducto);
+    const boton = document.getElementById(`boton${producto.id}`);
+    boton.addEventListener("click", () => {
+        sumarAlCarrito(producto.id);
+    })
+});
 
 
-while (eleccionCliente != "si" && eleccionCliente != "no") {
-    alert("Selecciona si o no")
-    eleccionCliente = prompt("desea comprar alguno juego?  si/no : ")
+const contenedorCarrito = document.getElementById("contenedorCarrito");
+
+function actualizarCarrito() {
+    let aux = "";
+    carrito.forEach(producto => {
+        aux += `<div class="contenedorJuego">
+        <img src="../img/${producto.id}.jpg" class="imagenJuego">
+        <div class="descripcionProducto">
+            <h3 class="tituloJuego"> ${producto.nombre} </h3>
+            <p class="precioJuego"> ${producto.precio} </p>
+            <p class="generoJuego"> ${producto.genero} </p>
+            <p class="cantidadJuego"> ${producto.cantidad} </p>
+            <button onClick = "eliminarDelCarrito(${producto.id})"> Eliminar del Carrito </button>
+        </div>
+    </div>`;
+    });
+    contenedorCarrito.innerHTML = aux;
+    calcularTotalCompra();
 }
 
-if (eleccionCliente == "si") {
-    alert("Juegos en stock : ")
-    let todosLosJuegos = stockJuegos.map(
-        (producto) => producto.nombre + " $" + producto.precio
-    );
-    alert(todosLosJuegos.join(" --- "))
-}
-
-while (eleccionCliente != "no") {
-    let nombre = prompt("elija el juego a comprar : ");
-    let precio = 0;
-    let genero = "sin genero";
-    if (nombre == "the forest" || nombre == "conan exiles" || nombre == "lol" || nombre == "mortal kombat" ||
-        nombre == "minecraft") {
-        switch (nombre) {
-            case "the forest":
-                nombre = theForest.nombre
-                genero = theForest.genero
-                precio = theForest.precio;
-                break;
-            case "conan exiles":
-                nombre = conanExiles.nombre;
-                genero = conanExiles.genero;
-                precio = conanExiles.precio;
-                break;
-            case "lol":
-                nombre = lol.nombre;
-                genero = lol.genero;
-                precio = lol.precio;
-                break;
-            case "mortal kombat":
-                nombre = mortalKombat.nombre;
-                genero = mortalKombat.genero;
-                precio = mortalKombat.precio;
-                break;
-            case "minecraft":
-                nombre = minecraft.nombre;
-                genero = minecraft.genero;
-                precio = minecraft.precio;
-                break
-            default:
-                break;
-        }
-
-        carrito.push({ nombre, genero, precio })
+const sumarAlCarrito = (id) => {
+    const producto = todosLosJuegos.find(producto => producto.id === id);
+    const productoEnCarrito = carrito.find(producto => producto.id === id);
+    if (productoEnCarrito) {
+        productoEnCarrito.cantidad++;
     } else {
-        alert("no tenemos ese juego")
+        carrito.push(producto);
     }
-    eleccionCliente = prompt("quiere comprar otro juego ? si/no");
-
-    while (eleccionCliente == "no") {
-        alert("compra realizada")
-        carrito.forEach((carritoFinal) => {
-            alert(`Producto:${carritoFinal.nombre} Genero:${carritoFinal.genero} Precio:${carritoFinal.precio} `)
-        });
-        console.log(carrito)
-        break;
-    }
-
+    actualizarCarrito();
 }
 
-let prueba = carrito.map(
-    (producto) => sumarCarrito(carrito[1].precio, carrito[0].precio));
-alert( `El total a pagar es : ${prueba[0]}`)
+const eliminarDelCarrito = (id) => {
+    const producto = carrito.find(producto => producto.id === id);
+    carrito.splice(carrito.indexOf(producto), 1);
+    actualizarCarrito();
+}
+
+const vaciarCarrito = document.getElementById("vaciarCarrito");
+vaciarCarrito.addEventListener("click", () => {
+    carrito.splice(0, carrito.length);
+    actualizarCarrito();
+});
+
+const totalACompra = document.getElementById("totalACompra");
+
+const calcularTotalCompra = () => {
+    let total = 0;
+    carrito.forEach(producto => {
+        total += producto.precio * producto.cantidad;
+    });
+    totalACompra.innerHTML = total;
+}
