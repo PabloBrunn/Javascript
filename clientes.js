@@ -19,13 +19,30 @@ Formulario.addEventListener("submit", (e) => {
     const edad = document.getElementById("edad").value;
 
     const persona = new Persona(nombre, email, edad);
-
-
-    Formulario.reset()
-
+    
 
     personas.push(persona);
 
+    localStorage.setItem("Persona", JSON.stringify(personas));
+
+    Formulario.reset();
+
 });
 
-console.log(personas);
+
+const botonAdmin = document.getElementById("admin");
+const datosAdmin = document.getElementById("datosAdmin");
+
+botonAdmin.addEventListener("click", () => {
+    const personas = JSON.parse(localStorage.getItem("Persona"));
+    let aux = "";
+    personas.forEach(persona => {
+        aux += `<div class="datosAdmin">
+                    <p class="resultado"> Nombre ${persona.nombre} </p> 
+                    <p class="resultado"> Correo Electrónico: ${persona.email} </p>
+                    <p class="resultado"> edad: ${persona.edad} </p>
+                </div>
+                <hr>`
+    });
+    datosAdmin.innerHTML = aux; 
+})

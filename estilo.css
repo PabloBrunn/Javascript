@@ -165,3 +165,14 @@ footer{
 footer p {
     color: white;
 }
+
+
+.datosAdmin{
+    padding: 10px;
+    margin: 10px;
+    border: solid 2px black;
+}
+
+.botonAdmin{
+    margin: 5px;
+}
