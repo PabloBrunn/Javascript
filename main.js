@@ -62,11 +62,7 @@ function actualizarCarrito() {
 const sumarAlCarrito = (id) => {
     const producto = todosLosJuegos.find(producto => producto.id === id);
     const productoEnCarrito = carrito.find(producto => producto.id === id);
-    if (productoEnCarrito) {
-        productoEnCarrito.cantidad++;
-    } else {
-        carrito.push(producto);
-    }
+    productoEnCarrito ? productoEnCarrito.cantidad++ : carrito.push(producto);
     actualizarCarrito();
 }
 
@@ -74,12 +70,14 @@ const eliminarDelCarrito = (id) => {
     const producto = carrito.find(producto => producto.id === id);
     carrito.splice(carrito.indexOf(producto), 1);
     actualizarCarrito();
+    console.log(`eliminaste el juego ${producto.nombre}`)
 }
 
 const vaciarCarrito = document.getElementById("vaciarCarrito");
 vaciarCarrito.addEventListener("click", () => {
     carrito.splice(0, carrito.length);
     actualizarCarrito();
+    carrito.length === 0 && console.log("vaciaste el carrito")
 });
 
 const totalACompra = document.getElementById("totalACompra");
@@ -91,3 +89,33 @@ const calcularTotalCompra = () => {
     });
     totalACompra.innerHTML = total;
 }
+
+
+const juego6 = new Producto(6, "project zomboid", 2800, 1, "zombies");
+const juego7 = new Producto(7, "mario kart", 300, 1, "carreras");
+const juego8 = new Producto(8, "mario", 520, 1, "plataforma");
+const juego9 = new Producto(9, "rust", 4500, 1, "survival");
+const juego10 = new Producto(10, "dota", 120, 1, "moba");
+
+const juegosAgregar = [juego6, juego7, juego8, juego9, juego10];
+
+const juegosDelMesSiguiente = [...todosLosJuegos, ...juegosAgregar];
+
+console.log(juegosDelMesSiguiente)
+
+
+const lanzamiento = document.getElementById("lanzamiento");
+
+
+juegosDelMesSiguiente.forEach(producto => {
+    const divProducto = document.createElement("div");
+    divProducto.innerHTML = `<div class="contenedorJuego">
+                                <img src="../img/${producto.id}.jpg" class="imagenJuego">
+                                <div class="descripcionProducto">
+                                    <h3 class="tituloJuego"> ${producto.nombre} </h3>
+                                    <p class="precioJuego"> ${producto.precio} </p>
+                                    <p class="generoJuego"> ${producto.genero} </p>
+                                </div>
+                            </div>`;
+    lanzamiento.appendChild(divProducto);
+    });

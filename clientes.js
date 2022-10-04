@@ -16,10 +16,10 @@ Formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     const nombre = document.getElementById("nombre").value;
     const email = document.getElementById("email").value;
-    const edad = document.getElementById("edad").value;
+    const edadIngresada = document.getElementById("edad").value;
 
     const persona = new Persona(nombre, email, edad);
-    
+
 
     personas.push(persona);
 
@@ -27,6 +27,10 @@ Formulario.addEventListener("submit", (e) => {
 
     Formulario.reset();
 
+
+    function newFunction() {
+        return edadIngresada == (edadIngresada || "edad no ingresada");
+    }
 });
 
 
@@ -38,7 +42,7 @@ botonAdmin.addEventListener("click", () => {
     let aux = "";
     personas.forEach(persona => {
         aux += `<div class="datosAdmin">
-                    <p class="resultado"> Nombre ${persona.nombre} </p> 
+                    <p class="resultado"> Nombre: ${persona.nombre} </p> 
                     <p class="resultado"> Correo Electrónico: ${persona.email} </p>
                     <p class="resultado"> edad: ${persona.edad} </p>
                 </div>
