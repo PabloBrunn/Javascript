@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,46 +8,51 @@
     <link rel="stylesheet" href="../estilo.css">
     <title>juegos tuki</title>
 </head>
+
 <body>
 
-<header>
-    <nav>
-        <h1>Juegos Tuki</h1>
-        <ul>
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="juegos.html">Juegos</a></li>
-            <li><a href="clientes.html">Clientes</a></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <nav>
+            <h1>Juegos Tuki</h1>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="juegos.html">Juegos</a></li>
+                <li><a href="clientes.html">Clientes</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<main>
-    <h2>Juegos tuki</h2>
-    <p>juegos tiku te puede ofrecer estos juegos, por ahora</p>
-</main>
+    <main>
+        <h2>Juegos tuki</h2>
+        <p>juegos tiku te puede ofrecer estos juegos, por ahora</p>
+    </main>
 
-<article>
+    <article>
 
-    <div class="cardJuegos" id="contenedorJuegos"></div>
+        <div class="cardJuegos" id="contenedorJuegos"></div>
 
-</article>
+    </article>
 
-<section>
-    <h2>Carrito de compra</h2>
-    <h3>Total de la compra: <span id="totalACompra">0</span></h3>
-    <div class= "cardJuegos" id="contenedorCarrito"></div>
-    <button class="botonVaciar" id="vaciarCarrito">Vaciar carrito</button>
-</section>
+    <section>
+        <h2>Carrito de compra</h2>
+        <h3>Total de la compra: <span id="totalACompra">0</span></h3>
+        <div class="cardJuegos" id="contenedorCarrito"></div>
+        <button class="botonVaciar" id="vaciarCarrito">Vaciar carrito</button>
+        <button class="botonComprar" id="comprarCarrito">Comprar</button>
+    </section>
 
-<section>
-    <h2>Proximos lanzamientos</h2>
-    <div class="cardJuegos" id="lanzamiento"></div>
-</section>
+    <section>
+        <h2>Proximos lanzamientos</h2>
+        <div class="cardJuegos" id="lanzamiento"></div>
+    </section>
 
-<footer>
-    <p>© JuegosTuki.com</p> 
-</footer>
+    <footer>
+        <p>© JuegosTuki.com</p>
+    </footer>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../main.js"></script>
 </body>
+
 </html>

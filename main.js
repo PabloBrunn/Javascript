@@ -77,7 +77,14 @@ const vaciarCarrito = document.getElementById("vaciarCarrito");
 vaciarCarrito.addEventListener("click", () => {
     carrito.splice(0, carrito.length);
     actualizarCarrito();
-    carrito.length === 0 && console.log("vaciaste el carrito")
+    carrito.length === 0 && 
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Carrito Vaciado',
+        showConfirmButton: false,
+        timer: 1500
+    })
 });
 
 const totalACompra = document.getElementById("totalACompra");
@@ -119,3 +126,16 @@ juegosDelMesSiguiente.forEach(producto => {
                             </div>`;
     lanzamiento.appendChild(divProducto);
     });
+
+
+const botonComprar = document.getElementById("comprarCarrito");
+
+botonComprar.addEventListener("click", () => {
+    Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'compra realizada',
+            showConfirmButton: false,
+            timer: 1500
+        })
+})

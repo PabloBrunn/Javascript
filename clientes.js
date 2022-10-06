@@ -16,7 +16,7 @@ Formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     const nombre = document.getElementById("nombre").value;
     const email = document.getElementById("email").value;
-    const edadIngresada = document.getElementById("edad").value;
+    const edad = document.getElementById("edad").value;
 
     const persona = new Persona(nombre, email, edad);
 
@@ -27,10 +27,6 @@ Formulario.addEventListener("submit", (e) => {
 
     Formulario.reset();
 
-
-    function newFunction() {
-        return edadIngresada == (edadIngresada || "edad no ingresada");
-    }
 });
 
 
@@ -49,4 +45,17 @@ botonAdmin.addEventListener("click", () => {
                 <hr>`
     });
     datosAdmin.innerHTML = aux; 
+})
+
+
+const botonSubmit = document.getElementById("submit");
+
+botonSubmit.addEventListener("click", () => {
+    Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Datos enviados',
+            showConfirmButton: false,
+            timer: 1500
+        })
 })
