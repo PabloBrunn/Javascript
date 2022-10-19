@@ -176,3 +176,14 @@ footer p {
 .botonAdmin{
     margin: 5px;
 }
+
+
+.topCompradores{
+    padding: 2px;
+    border: solid black 1px;
+    background-color: rgb(208, 208, 147);
+}
+
+.contenedorTop{
+    margin: 7%;
+}

@@ -16,6 +16,7 @@ const juego3 = new Producto(3, "crash", 1300, 1, "plataforma");
 const juego4 = new Producto(4, "subnautica", 340, 1, "survival");
 const juego5 = new Producto(5, "raft", 240, 1, "survival");
 
+
 const todosLosJuegos = [juego1, juego2, juego3, juego4, juego5];
 
 const contenedorJuegos = document.getElementById("contenedorJuegos");
